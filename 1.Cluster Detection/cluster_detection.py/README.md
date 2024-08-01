@@ -12,7 +12,7 @@ The input for this code consists of .tsv files. There is one file for each gene 
 
 ### **Output File**
 
-`cluster_detection.tsv.gz`
+`cluster_detection_(001/002).tsv.gz
 
 One single file with all the genes. There is a row for each cluster length for each gene. It means taht it can be more than one row per gene.
 

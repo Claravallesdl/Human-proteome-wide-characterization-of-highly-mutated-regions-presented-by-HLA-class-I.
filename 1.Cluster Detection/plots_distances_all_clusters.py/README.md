@@ -1,4 +1,4 @@
-## **README (cluster_detection.py)**
+## **README (plots_distances_all_clusters.py)**
 
 Plots and summary statistics of the distances between the HPC clusters and the distances bewteen the first/last codon of the gene and the first/last HPC cluster (tail distances).
 

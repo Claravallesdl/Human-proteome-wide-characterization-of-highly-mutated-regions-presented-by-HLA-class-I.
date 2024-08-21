@@ -6,7 +6,7 @@ The script performs the following steps:
 1. **Extract Coordinates**: It extracts the coordinates of disorder and hotspot regions from the input data using regular expressions.
 2. **Create Dictionaries**: It creates dictionaries where each gene is associated with sets of codon indices. These indices represent the codons that fall within the specified disorder and hotspot regions.
 3. **Compare Codon Indices**: It compares the sets of codon indices for each gene to determine overlaps. Specifically, it identifies codons that are both within disordered regions and hotspot regions.
-
+4. **Statistical Analysis**: It calculates the number of disordered codons inside and outside hotspot regions, determines their proportions and percentages, and performs a Z-test to evaluate if the difference in proportions is statistically significant.
 ## Requirements
 
 - Python 3.x

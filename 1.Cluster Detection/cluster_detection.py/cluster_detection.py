@@ -1,20 +1,39 @@
-
+# ==========================
+# Required Packages
+# ==========================
 import os
 import glob
 import argparse
 import pandas as pd
 
-parser = argparse.ArgumentParser(description='New file with ')
+# ==========================
+# Command Line Arguments
+# ==========================
+parser = argparse.ArgumentParser(description='Process data to analyze HPC clusters and their metrics.')
 
-parser.add_argument('directory_path')   # Directory of all the files for each chromosome folder
-parser.add_argument('output_filepath')  # Output path
-parser.add_argument('lhr', help='lhr 001 o 002')
+parser.add_argument('directory_path', help='Directory containing chromosome folders with TSV files.')
+parser.add_argument('output_filepath', help='Output file path for the final results.')
+parser.add_argument('lhr', help='Specify lhr as 001 or 002')
 
 args = parser.parse_args()
 
 dir_path = args.directory_path
 
+# ==========================
+# Functions
+# ==========================
+
+## HPC Clusters
 def HPC_clusters(dataframe):
+    """
+    Identifies clusters of Highly Presented Codons (HPC) and their sizes from the input DataFrame.
+    
+    Args:
+        dataframe (pd.DataFrame): DataFrame containing data.
+        
+    Returns:
+        pd.DataFrame: DataFrame summarizing the number and coordinates of HPC clusters.
+    """
     cluster_sizes = {}  # Dictionary to store the sizes of clusters
     current_cluster_size = 0  # Initialize the size counter for the current cluster
     start = None  # Variable to track the starting codon index of a cluster
@@ -57,8 +76,18 @@ def HPC_clusters(dataframe):
     
     return result_df  # Return the DataFrame summarizing clusters
 
-
+## Calculate Metrics
 def calculate_metrics(cluster_coords, data):
+    """
+    Calculates various metrics for clusters based on provided coordinates.
+    
+    Args:
+        cluster_coords (str): Comma-separated string of cluster coordinates.
+        data (pd.DataFrame): DataFrame containing genomic data.
+        
+    Returns:
+        dict: Dictionary containing calculated metrics as strings joined by commas.
+    """
     # Initialize lists to store calculated metrics
     peptides_sum = []      # List to store the sum of peptides for each cluster
     fraction_means = []    # List to store the mean of Fraction_u_pnmers_001/002 for each cluster
@@ -89,8 +118,18 @@ def calculate_metrics(cluster_coords, data):
         'Fraction_std': ','.join(map(str, fraction_stds))           # Join standard deviations as a string
     }
 
-
+## Process Directory
 def process_directory(chromosome, dir_path):
+    """
+    Processes all files in the specified directory for a given chromosome and computes cluster metrics.
+    
+    Args:
+        chromosome (str): Chromosome identifier (e.g., 'chr1', 'chrX').
+        dir_path (str): Path to the directory containing chromosome folders.
+        
+    Returns:
+        pd.DataFrame: DataFrame containing processed results for the chromosome.
+    """
     results = []
     
     # Obtain the list of all .tsv files in the specified directory
@@ -142,7 +181,9 @@ def process_directory(chromosome, dir_path):
     
     return final_result_concat
 
-
+# ==========================
+# Main Execution
+# ==========================
 # List of chromosomes to process
 chromosomes = [f'chr{i}' for i in range(1, 23)] + ['chrX', 'chrY']
 

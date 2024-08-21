@@ -21,12 +21,12 @@ The script expects two DataFrames:
 1. **`disorder`**: Contains the coordinates of disorder regions for each gene.
 The DataFrame results from merging the UniProt ID - gene annotation dataset with the `UP000005640_9606_region.bed.gz` file, available for download from [UniProt's FTP server](https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/genome_annotation_tracks/UP000005640_9606_beds/), and an additional `regions.bed` file.
 Relevant columns:
-- 'Gene': Gene name 
+- `Gene`: Gene name 
 - `Annot_description`: coordinate information as strings.
 
 2. **`df_HR`**: Contains the coordinates of hotspot regions for each gene.
 Relevant columns:
-- 'Gene': Gene name 
+- `Gene`: Gene name 
 - `Htspt_coord`: coordinate information as strings.
 
 ## Functions

@@ -40,7 +40,7 @@ Identifies clusters of Highly Presented Codons (HPC) and their sizes from the in
 
 **Explanation:**
 
-This function iterates through the rows of the input DataFrame to identify clusters of Highly Presented Codons (HPC). It tracks the size of each cluster and its start and end positions. The function then creates a DataFrame summarizing the number of clusters, their sizes, and their coordinates.
+This function iterates through the rows of the input DataFrame to identify clusters of Highly Presented Codons (HPC). It determines whether each codon is considered highly presented based on the presence of 'YES' or 'NO' in the `Hotspot_u_nmers_lhr` column. A 'YES' indicates a highly presented codon, while a 'NO' indicates it is not highly presented. It tracks the size of each cluster and its start and end positions. The function then creates a DataFrame summarizing the number of clusters, their sizes, and their coordinates.
 
 ### `calculate_metrics(cluster_coords, data)`
 
@@ -74,7 +74,7 @@ Processes all files in the specified directory for a given chromosome and comput
 
 **Explanation:**
 
-This function processes all TSV files within a specified directory for a given chromosome. It reads each file into a DataFrame, computes HPC clusters, calculates various metrics for these clusters, and then combines the results. The final DataFrame includes additional columns for gene and transcript information, as well as computed metrics.
+This function processes all TSV files within a specified directory for a given chromosome. It reads each file into a DataFrame, computes HPC clusters, calculates various metrics for these clusters, and then combines the results.
 
 ### Main Execution
 
@@ -119,7 +119,7 @@ The final TSV file produced by the script contains the following columns:
 - **Num_Clusters**: Number of clusters of each size.
 - **Length_Clusters**: Sizes of the clusters.
 - **Codon_coordinates**: Coordinates of each cluster.
-- **Peptides**: Sum of peptides for each cluster.
+- **Peptides**: Total number of presented peptides for each cluster.
 - **Fraction_mean**: Mean of `Fraction_u_pnmers_001/002` for each cluster.
 - **Fraction_std**: Standard deviation of `Fraction_u_pnmers_001/002` for each cluster.
 

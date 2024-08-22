@@ -1,4 +1,4 @@
-# HPC Cluster Analysis Script
+# HPC Cluster Detection Script
 
 This Python script processes genomic data to analyze Highly Presented Codons (HPC) clusters in High Performance Computing (HPC) environments. It obtains the coordinates and calculates metrics for clusters of HPCs and outputs the results to a tsv file.
 
@@ -16,7 +16,7 @@ The script requires the following Python packages:
 To run the script, use the following command:
 
 ```bash
-python script_name.py <directory_path> <output_filepath> <lhr>
+python cluster_detection.py <directory_path> <output_filepath> <lhr>
 ```
 ## Arguments
 

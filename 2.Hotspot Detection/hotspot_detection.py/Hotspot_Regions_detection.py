@@ -14,7 +14,7 @@ import pandas as pd
 
 parser = argparse.ArgumentParser(description='Process directories and detect hotspots.')
 
-parser.add_argument('directory_path')# Argument for the directory path containing files for each chromosome.
+parser.add_argument('directory_path')# Argument for the directory path containing folders for each chromosome, wich inside contains .tsv.gz file for each gene.
 parser.add_argument('output_filepath')# Argument for the output file path where the results will be saved.
 
 args = parser.parse_args()

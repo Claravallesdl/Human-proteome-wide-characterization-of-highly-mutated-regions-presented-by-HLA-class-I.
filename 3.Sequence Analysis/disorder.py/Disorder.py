@@ -27,16 +27,24 @@ from statsmodels.stats.proportion import proportions_ztest, proportion_confint
 
 # Function to extract coordinates from a disorder region string
 def extract_coordinates_disorder(coord_str):
-    # Check if the input is a string
     if isinstance(coord_str, str):
-        # Use a regular expression to match and extract start and end positions from the string
-        match = re.match(r'.*(\d+)-.*(\d+);? ?', coord_str)
-        # If the pattern matches, extract the start and end positions
+        # Define the regular expression pattern to match the coordinate range
+        pattern = r'([A-Za-z])(\d+)-([A-Za-z])(\d+)'
+        
+        # Search for the pattern in the coordinate string
+        match = re.search(pattern, coord_str)
+        
         if match:
-            start = int(match.group(1))  # Convert the start position to an integer
-            end = int(match.group(2))    # Convert the end position to an integer
-            return list(range(start, end + 1))  # Return a list of positions from start to end (inclusive)
-    # Return an empty list if the input is not a string or if the pattern does not match
+            # Extract start and end coordinates
+            start_letter, start_number, end_letter, end_number = match.groups()
+            
+            # Convert to integers
+            start_coord = int(start_number)
+            end_coord = int(end_number)
+            
+            # Return a list of coordinates
+            return list(range(start_coord, end_coord + 1))
+    # If not a string or no match, return an empty list
     return []
 
 # Function to extract coordinates from a hotspot region string
